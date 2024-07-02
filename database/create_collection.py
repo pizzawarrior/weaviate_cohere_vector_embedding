@@ -1,5 +1,5 @@
 import weaviate.classes.config as wc
-from database import client
+from open_db_connection import client
 
 # raise exception if not connected
 assert client.is_live()

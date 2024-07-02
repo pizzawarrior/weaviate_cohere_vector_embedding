@@ -3,8 +3,7 @@ import requests
 from datetime import datetime, timezone
 import json
 from weaviate.util import generate_uuid5
-# from tqdm import tqdm
-from database import client
+from open_db_connection import client
 
 client.connect()
 
