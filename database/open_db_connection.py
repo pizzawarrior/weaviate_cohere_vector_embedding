@@ -1,6 +1,7 @@
 import weaviate
 import os
 from dotenv import load_dotenv
+from weaviate.classes.init import AdditionalConfig, Timeout
 
 load_dotenv()
 
@@ -15,18 +16,18 @@ headers = {
     "X-Cohere-Api-Key": COHERE_API_KEY
 }
 
-client = weaviate.connect_to_wcs(
-    cluster_url=WCD_URL,
-    auth_credentials=weaviate.auth.AuthApiKey(API_KEY),
-    headers=headers
-)
-
 try:
-    print(f'Database connection established: {client.is_ready()}')
-    # meta = client.get_meta()
-    # print(meta)
+    client = weaviate.connect_to_wcs(
+        cluster_url=WCD_URL,
+        auth_credentials=weaviate.auth.AuthApiKey(API_KEY),
+        headers=headers,
+        additional_config=AdditionalConfig(
+            timeout=Timeout(query=60)
+        )
+    )
+
 except weaviate.exceptions.UnexpectedStatusCodeError as e:
     print(f'Error:{e}')
 
 finally:
-    client.close()
+    print(f'Database connection established: {client.is_ready()}')

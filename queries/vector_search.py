@@ -1,10 +1,9 @@
 import weaviate.classes.query as wq
 import os
 import cohere
-from cohere import Client as CohereClient
 from dotenv import load_dotenv
-from typing import List
 from database.open_db_connection import client
+from utils.vectorize import vectorize
 
 # Vector Search ---->
 
@@ -16,14 +15,14 @@ co = cohere.Client(co_token)
 client.connect()
 
 
-def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
-    response = cohere_client.embed(
-        texts=texts,
-        model='embed-multilingual-v3.0',
-        input_type='search_document'
-    )
+# def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
+#     response = cohere_client.embed(
+#         texts=texts,
+#         model='embed-multilingual-v3.0',
+#         input_type='search_document'
+#     )
 
-    return response.embeddings
+#     return response.embeddings
 
 
 query_text = 'comedy'

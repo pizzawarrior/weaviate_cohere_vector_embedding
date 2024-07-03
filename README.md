@@ -1,7 +1,7 @@
 This project is aimed at exploring Weaviate  database search, using Cohere to generate custom vectors.
 There are several searches we perform using the steps listed below:
 - RAG single prompt
-- vector search
+- Vector search
 
 You will need the following:
 - a Weaviate API Key and URL
@@ -18,3 +18,13 @@ You will need the following:
 6. import the data: `python database/import_data`
 7. query the data: `python -m queries.{the_file_you_wish_to_query}`
 8. to terminate the db connection for any reason: `python database/close_db_connection`
+
+### More info on search methods
+RAG search, aka 'Generative', consists of 2 steps:
+1. (Weaviate) Run a search query in Weaviate to find relevant objects.
+2. (Cohere) Use a Cohere Large Language Model to generate a response based on the results (from the previous step) and the provided prompt or task.
+
+### Testing REST endpoints
+- paste your WCD REST Endpoint URL into the browser, and append it with `/v1`
+- this will show you a list of RESTful endpoints you can access by configuring Postman.
+- Weaviate uses a bearer token, and you must paste in your WCD_API_KEY for authorization

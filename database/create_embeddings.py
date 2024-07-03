@@ -1,25 +1,15 @@
 import requests
 import pandas as pd
 import os
-from typing import List
 import cohere
-from cohere import Client as CohereClient
 from dotenv import load_dotenv
+from utils.vectorize import vectorize
 
 
 load_dotenv()
 
 co_token = os.getenv("COHERE_APIKEY")
 co = cohere.Client(co_token)
-
-
-def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
-    response = cohere_client.embed(
-        texts=texts, model="embed-multilingual-v3.0", input_type="search_document"
-    )
-
-    return response.embeddings
-
 
 data_url = "https://raw.githubusercontent.com/weaviate-tutorials/edu-datasets/main/movies_data_1990_2024.json"
 resp = requests.get(data_url)
