@@ -6,14 +6,14 @@ from dotenv import load_dotenv
 from typing import List
 from database.open_db_connection import client
 
-# Vector Search
+# Vector Search ---->
 
 load_dotenv()
 
-client.connect()
-
 co_token = os.getenv("COHERE_API_KEY")
 co = cohere.Client(co_token)
+
+client.connect()
 
 
 def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:

@@ -48,3 +48,16 @@ if len(movies.batch.failed_objects) > 0:
     print(f'Failed to import {len(movies.batch.failed_objects)} objects')
 
 client.close()
+
+
+# Check if import was successful, include embeddings
+def return_object_from_collection(collection):
+    response = collection.query.fetch_objects(
+        include_vector=True,
+        limit=1
+    )
+
+    print(response.objects[0].properties)
+    print(response.objects[0].vector["default"])
+
+# print(return_object_from_collection(movies))

@@ -22,8 +22,9 @@ client = weaviate.connect_to_wcs(
 )
 
 try:
-    meta = client.get_meta()
-    print(meta)
+    print(f'Database connection established: {client.is_ready()}')
+    # meta = client.get_meta()
+    # print(meta)
 except weaviate.exceptions.UnexpectedStatusCodeError as e:
     print(f'Error:{e}')
 
