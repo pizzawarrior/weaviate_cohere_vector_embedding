@@ -7,8 +7,8 @@ You will need the following:
 - a Weaviate API Key and URL
 - a cohere API Key
 
-1. `pip install -r requirements.txt`
-2. create a .env file and stor your creds
+1. install virtual env, then: `pip install -r requirements.txt`
+2. create a .env file and store your creds
 3. test the db connection by running: `python database/open_db_connection`
 4. create a embeddings for the dataset: `python database/create_embeddings`
 - this will create a new directory inside your root directory called 'scratch.'

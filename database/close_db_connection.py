@@ -1,5 +1,6 @@
 from open_db_connection import client
 
-
-client.close()
-print('Weaviate connection terminated')
+try:
+    client.close()
+finally:
+    print('Weaviate connection terminated')

@@ -14,21 +14,9 @@ co = cohere.Client(co_token)
 
 client.connect()
 
-
-# def vectorize(cohere_client: CohereClient, texts: List[str]) -> List[List[float]]:
-#     response = cohere_client.embed(
-#         texts=texts,
-#         model='embed-multilingual-v3.0',
-#         input_type='search_document'
-#     )
-
-#     return response.embeddings
-
-
+movies = client.collections.get("MovieCustomVector")
 query_text = 'comedy'
 query_vector = vectorize(co, [query_text])[0]
-
-movies = client.collections.get("MovieCustomVector")
 
 response = movies.query.near_vector(
     near_vector=query_vector,
